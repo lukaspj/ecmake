@@ -11,11 +11,15 @@ steps:
   - name: test
     image: golang:1.14.1
     commands:
+      - wget -qO- https://github.com/lukaspj/ecmake/releases/download/v0.0.3/ecmake_0.0.3_Linux_x86_64.tar.gz | tar -xz
+      - ./ecmake TestWithRace
       - go test -race -v ./... -cover
 
   - name: release
     image: golang:1.14.1
     commands:
+      - wget -qO- https://github.com/lukaspj/ecmake/releases/download/v0.0.3/ecmake_0.0.3_Linux_x86_64.tar.gz | tar -xz
+      - ./ecmake Release
       - curl -sL https://git.io/goreleaser | bash
     environment:
       GITHUB_TOKEN:

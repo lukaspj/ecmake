@@ -1,15 +1,14 @@
 function Test(args) {
-    console.log("Tester");
-    try {
-        sh.Output("go");
-    } catch (e) {
-        console.log(JSON.stringify(e));
-        console.log(e.toString());
-    }
-    console.log(sh.Output("go", "version"));
+    sh.RunV("go", "test", "-v", "./...", "-cover")
 }
 
 SetTargets({
-    "Test": Test
+    "Test": Test,
+    "TestWithRace": function (args) {
+        sh.RunV("go", "test", "-race", "-v", "./...", "-cover")
+    },
+    "Release": function (args) {
+        console.log(sh.RunV("bash", "-c", "curl -sL https://git.io/goreleaser | bash"));
+    }
 });
 
