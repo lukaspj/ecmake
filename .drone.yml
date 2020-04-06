@@ -8,6 +8,11 @@ steps:
     commands:
       - git fetch --tags
 
+  - name: test
+    image: golang:1.14.1
+    commands:
+      - go test -race -v ./... -cover
+
   - name: Release
     image: golang:1.14.1
     commands:
