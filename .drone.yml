@@ -3,7 +3,7 @@ type: kubernetes
 name: Build
 
 steps:
-  - name: Fetch
+  - name: fetch
     image: docker:git
     commands:
       - git fetch --tags
@@ -13,7 +13,7 @@ steps:
     commands:
       - go test -race -v ./... -cover
 
-  - name: Release
+  - name: release
     image: golang:1.14.1
     commands:
       - curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
