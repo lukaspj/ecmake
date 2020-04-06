@@ -16,7 +16,7 @@ steps:
   - name: release
     image: golang:1.14.1
     commands:
-      - curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
+      - curl -sL https://git.io/goreleaser | bash
     environment:
       GITHUB_TOKEN:
         from_secret: github-token
