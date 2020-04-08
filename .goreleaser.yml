@@ -21,6 +21,14 @@ builds:
   ignore:
     - goos: darwin
       goarch: 386
+dockers:
+  - image_templates:
+      - 'docker.pkg.github.com/lukaspj/ecmake/scratch:{{ .Tag }}'
+      - 'docker.pkg.github.com/lukaspj/ecmake/scratch:v{{ .Major }}.{{ .Minor }}'
+      - 'docker.pkg.github.com/lukaspj/ecmake/scratch:latest'
+    dockerfile: docker/scratch.Dockerfile
+    binaries:
+      - ecmake
 archives:
 - replacements:
     darwin: Darwin
