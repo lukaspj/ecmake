@@ -2,6 +2,20 @@ kind: pipeline
 type: kubernetes
 name: Build
 
+anchors:
+  - &build_and_push_docker
+    image: plugins/docker
+    settings:
+      registry: docker.pkg.github.com
+      username: lukaspj
+      password:
+        from_secret: github-packages-token
+  - &build_and_push_docker_scratch
+    <<: *build_and_push_docker
+    settings:
+      repo: docker.pkg.github.com/lukaspj/ecmake/scratch
+      dockerfile: docker/scratch.Dockerfile
+
 steps:
   - name: fetch
     image: docker:git
@@ -16,34 +30,34 @@ steps:
 
   - name: release
     image: goreleaser/goreleaser
-    volumes:
-        - name: dockersock
-          path: /var/run
     commands:
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
       - goreleaser release
     environment:
       GITHUB_TOKEN:
         from_secret: github-token
-      DOCKER_REGISTRY: docker.pkg.github.com
-      DOCKER_USERNAME: lukaspj
-      DOCKER_PASSWORD:
-        from_secret: github-packages-token
     when:
       event:
         - tag
 
-services:
-  - name: docker
-    image: docker:dind
-    privileged: true
-    volumes:
-      - name: dockersock
-        path: /var/run
+  - name: docker publish master
+    <<: *build_and_push_docker_scratch
+    settings:
+      tags:
+        - master
+    when:
+      branch:
+        - master
 
-volumes:
-  - name: dockersock
-    temp: {}
+  - name: docker publish release
+    <<: *build_and_push_docker_scratch
+    settings:
+      tags:
+        - $DRONE_SEMVER_MAJOR
+        - $DRONE_SEMVER
+        - latest
+    when:
+      event:
+        - tag
 
 ---
 kind: secret
