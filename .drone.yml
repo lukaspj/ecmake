@@ -15,22 +15,46 @@ steps:
       - ecmake TestWithRace
 
   - name: release
-    image: golang:1.14.1
+    image: goreleaser/goreleaser
+    volumes:
+        - name: dockersock
+          path: /var/run
     commands:
-      - wget -qO- https://github.com/lukaspj/ecmake/releases/download/v0.0.3/ecmake_0.0.3_Linux_x86_64.tar.gz | tar -xzv ecmake && mv ecmake /usr/local/bin/
-      - ecmake Release
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+      - goreleaser release
     environment:
       GITHUB_TOKEN:
         from_secret: github-token
+      DOCKER_REGISTRY: docker.pkg.github.com
+      DOCKER_USERNAME: lukaspj
+      DOCKER_PASSWORD:
+        from_secret: github-packages-token
     when:
       event:
         - tag
 
+services:
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+volumes:
+  - name: dockersock
+    temp: {}
 
 ---
 kind: secret
 name: github-token
 get:
   path: github-repo-token
-  name: token
+  name: repotoken
+---
+kind: secret
+name: github-packages-token
+get:
+  path: github-repo-token
+  name: packagetoken
 
