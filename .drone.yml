@@ -52,8 +52,8 @@ steps:
     <<: *build_and_push_docker_scratch
     settings:
       tags:
-        - $DRONE_SEMVER_MAJOR
-        - $DRONE_SEMVER
+        - ${DRONE_SEMVER_MAJOR}
+        - ${DRONE_SEMVER}
         - latest
     when:
       event:
