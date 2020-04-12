@@ -26,7 +26,7 @@ github.com/dlclark/regexp2/syntax
 github.com/docker/distribution/digestset
 github.com/docker/distribution/reference
 github.com/docker/distribution/registry/api/errcode
-# github.com/docker/docker v17.12.0-ce-rc1.0.20200309214505-aa6a9891b09c+incompatible
+# github.com/docker/docker v17.12.0-ce-rc1.0.20200309214505-aa6a9891b09c+incompatible => github.com/docker/engine v17.12.0-ce-rc1.0.20200309214505-aa6a9891b09c+incompatible
 ## explicit
 github.com/docker/docker/api
 github.com/docker/docker/api/types
@@ -118,7 +118,7 @@ golang.org/x/net/proxy
 # golang.org/x/sync v0.0.0-20190423024810-112230192c58
 ## explicit
 golang.org/x/sync/errgroup
-# golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae
+# golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae => golang.org/x/sys v0.0.0-20190830141801-acfa387b8d69
 ## explicit
 golang.org/x/sys/unix
 golang.org/x/sys/windows
@@ -138,3 +138,5 @@ google.golang.org/genproto/googleapis/rpc/status
 # google.golang.org/grpc v1.21.0
 google.golang.org/grpc/codes
 google.golang.org/grpc/status
+# github.com/docker/docker => github.com/docker/engine v17.12.0-ce-rc1.0.20200309214505-aa6a9891b09c+incompatible
+# golang.org/x/sys => golang.org/x/sys v0.0.0-20190830141801-acfa387b8d69

@@ -2,6 +2,11 @@ module github.com/lukaspj/ecmake
 
 go 1.14
 
+replace (
+	github.com/docker/docker => github.com/docker/engine v17.12.0-ce-rc1.0.20200309214505-aa6a9891b09c+incompatible
+	golang.org/x/sys => golang.org/x/sys v0.0.0-20190830141801-acfa387b8d69
+)
+
 require (
 	github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 // indirect
 	github.com/Microsoft/hcsshim v0.8.7 // indirect
