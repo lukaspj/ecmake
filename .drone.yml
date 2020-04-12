@@ -26,7 +26,6 @@ steps:
     image: golang:1.14.1
     commands:
       - wget -qO- https://github.com/lukaspj/ecmake/releases/download/v0.0.3/ecmake_0.0.3_Linux_x86_64.tar.gz | tar -xz ecmake && mv ecmake /usr/local/bin/
-      - go mod vendor
       - ecmake TestWithRace
 
   - name: release
