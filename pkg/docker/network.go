@@ -6,14 +6,19 @@ import (
 	"github.com/docker/docker/client"
 )
 
-func (d *Module) NetworkCreate(name string, config *types.NetworkCreate) error {
+type NetworkCreateConfig struct {
+
+}
+
+func (d *Module) NetworkCreate(name string, config NetworkCreateConfig) error {
 	ctx := context.Background()
 	cli, err := client.NewEnvClient()
 	if err != nil {
 		return err
 	}
 
-	_, err = cli.NetworkCreate(ctx, name, *config)
+	_, err = cli.NetworkCreate(ctx, name, types.NetworkCreate{
+	})
 
 	return err
 }
