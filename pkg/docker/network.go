@@ -19,6 +19,7 @@ func (d *Module) NetworkCreate(name string, config NetworkCreateConfig) error {
 	cli.NegotiateAPIVersion(ctx)
 
 	_, err = cli.NetworkCreate(ctx, name, types.NetworkCreate{
+		CheckDuplicate: true,
 	})
 
 	return err
