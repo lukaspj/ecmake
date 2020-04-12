@@ -12,10 +12,11 @@ type NetworkCreateConfig struct {
 
 func (d *Module) NetworkCreate(name string, config NetworkCreateConfig) error {
 	ctx := context.Background()
-	cli, err := client.NewEnvClient()
+	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {
 		return err
 	}
+	cli.NegotiateAPIVersion(ctx)
 
 	_, err = cli.NetworkCreate(ctx, name, types.NetworkCreate{
 	})

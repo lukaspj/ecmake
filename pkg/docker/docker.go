@@ -47,6 +47,7 @@ func (d *Module) Build(config DockerBuildConfig) error {
 	if err != nil {
 		return err
 	}
+	cli.NegotiateAPIVersion(ctx)
 
 	dockerBuildContext, err := archive.TarWithOptions(config.ContextPath, &archive.TarOptions{})
 	defer dockerBuildContext.Close()
@@ -73,6 +74,7 @@ func (d *Module) Push(config DockerRegistryConfig, tag string) error {
 	if err != nil {
 		return err
 	}
+	cli.NegotiateAPIVersion(ctx)
 
 	auth := struct {
 		Username string
