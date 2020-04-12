@@ -9,14 +9,14 @@ anchors:
   - &github
     settings:
       registry: docker.pkg.github.com
-      repo: docker.pkg.github.com/lukaspj/go-spa/go-spa
+      repo: docker.pkg.github.com/lukaspj/ecmake/ecmake
       username: lukaspj
       password:
         from_secret: github-packages-token
   - &harbor
     settings:
       registry: harbor.default.cluster.lukasj.org
-      repo: harbor.default.cluster.lukasj.org/public/go-spa
+      repo: harbor.default.cluster.lukasj.org/public/ecmake
       username:
         from_secret: harbor-public-username
       password:
@@ -24,12 +24,10 @@ anchors:
   - &build_and_push_docker_go_1_14
     <<: *build_and_push_docker
     settings:
-      repo: docker.pkg.github.com/lukaspj/ecmake/go_1_14
       dockerfile: docker/go1.14.Dockerfile
   - &build_and_push_docker_scratch
     <<: *build_and_push_docker
     settings:
-      repo: docker.pkg.github.com/lukaspj/ecmake/scratch
       dockerfile: docker/scratch.Dockerfile
 
 steps:
