@@ -1,6 +1,4 @@
-package mount
-
-import "github.com/moby/sys/mountinfo"
+package mount // import "github.com/docker/docker/pkg/mount"
 
 // MakeShared ensures a mounted filesystem has the SHARED mount option enabled.
 // See the supported options in flags.go for further reference.
@@ -53,7 +51,7 @@ func MakeRUnbindable(mountPoint string) error {
 // MakeMount ensures that the file or directory given is a mount point,
 // bind mounting it to itself it case it is not.
 func MakeMount(mnt string) error {
-	mounted, err := mountinfo.Mounted(mnt)
+	mounted, err := Mounted(mnt)
 	if err != nil {
 		return err
 	}

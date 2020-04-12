@@ -1,6 +1,6 @@
 // +build !windows,!linux,!freebsd freebsd,!cgo
 
-package mountinfo
+package mount // import "github.com/docker/docker/pkg/mount"
 
 import (
 	"fmt"
