@@ -13,8 +13,6 @@ func (c *Console) log(call goja.FunctionCall) goja.Value {
 		fmt.Println()
 	}
 
-
-
 	fmtStr := call.Arguments[0].String()
 	var args []interface{}
 	for _, s := range call.Arguments[1:] {
