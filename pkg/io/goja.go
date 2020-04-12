@@ -6,7 +6,8 @@ import (
 
 func (io *Module) Inject(vm *goja.Runtime) {
 	ioObj := map[string]interface{} {
-
+		"DeleteFile": io.DeleteFile,
+		"DeleteFolder": io.DeleteFolder,
 	}
 	vm.Set("io", ioObj)
 }

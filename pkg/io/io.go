@@ -7,11 +7,10 @@ import (
 )
 
 type Module struct {
-	Verbose bool
 }
 
-func New(verbose bool) *Module {
-	return &Module{Verbose: verbose}
+func New() *Module {
+	return &Module{}
 }
 
 func (io *Module) DeleteFile(path string) error {
