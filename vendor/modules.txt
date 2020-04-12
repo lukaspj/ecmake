@@ -2,13 +2,20 @@
 ## explicit
 github.com/Azure/go-ansiterm
 github.com/Azure/go-ansiterm/winterm
-# github.com/Microsoft/go-winio v0.4.14
-## explicit
+# github.com/Microsoft/go-winio v0.4.15-0.20190919025122-fc70bd9a86b5
 github.com/Microsoft/go-winio
 github.com/Microsoft/go-winio/pkg/guid
-# github.com/Sirupsen/logrus v0.0.0-00010101000000-000000000000 => github.com/sirupsen/logrus v1.5.0
+# github.com/Microsoft/hcsshim v0.8.7
 ## explicit
-github.com/Sirupsen/logrus
+github.com/Microsoft/hcsshim/osversion
+# github.com/containerd/containerd v1.3.3
+## explicit
+github.com/containerd/containerd/errdefs
+# github.com/containerd/continuity v0.0.0-20200228182428-0f16d7a0959c
+## explicit
+github.com/containerd/continuity/fs
+github.com/containerd/continuity/syscallx
+github.com/containerd/continuity/sysx
 # github.com/dlclark/regexp2 v1.2.0
 ## explicit
 github.com/dlclark/regexp2
@@ -17,43 +24,43 @@ github.com/dlclark/regexp2/syntax
 ## explicit
 github.com/docker/distribution/digestset
 github.com/docker/distribution/reference
-# github.com/docker/docker v1.13.1
+github.com/docker/distribution/registry/api/errcode
+# github.com/docker/docker v17.12.0-ce-rc1.0.20200409190522-9c71a2be3193+incompatible
 ## explicit
+github.com/docker/docker/api
 github.com/docker/docker/api/types
 github.com/docker/docker/api/types/blkiodev
 github.com/docker/docker/api/types/container
 github.com/docker/docker/api/types/events
 github.com/docker/docker/api/types/filters
+github.com/docker/docker/api/types/image
 github.com/docker/docker/api/types/mount
 github.com/docker/docker/api/types/network
-github.com/docker/docker/api/types/reference
 github.com/docker/docker/api/types/registry
 github.com/docker/docker/api/types/strslice
 github.com/docker/docker/api/types/swarm
+github.com/docker/docker/api/types/swarm/runtime
 github.com/docker/docker/api/types/time
 github.com/docker/docker/api/types/versions
 github.com/docker/docker/api/types/volume
 github.com/docker/docker/client
+github.com/docker/docker/errdefs
 github.com/docker/docker/pkg/archive
 github.com/docker/docker/pkg/fileutils
 github.com/docker/docker/pkg/idtools
 github.com/docker/docker/pkg/ioutils
-github.com/docker/docker/pkg/jsonlog
 github.com/docker/docker/pkg/jsonmessage
 github.com/docker/docker/pkg/longpath
 github.com/docker/docker/pkg/pools
-github.com/docker/docker/pkg/promise
 github.com/docker/docker/pkg/system
 github.com/docker/docker/pkg/term
 github.com/docker/docker/pkg/term/windows
-github.com/docker/docker/pkg/tlsconfig
 # github.com/docker/go-connections v0.4.0
 ## explicit
 github.com/docker/go-connections/nat
 github.com/docker/go-connections/sockets
 github.com/docker/go-connections/tlsconfig
 # github.com/docker/go-units v0.4.0
-## explicit
 github.com/docker/go-units
 # github.com/dop251/goja v0.0.0-20200326102500-6438c8ddc517
 ## explicit
@@ -66,13 +73,34 @@ github.com/dop251/goja/token
 ## explicit
 github.com/go-sourcemap/sourcemap
 github.com/go-sourcemap/sourcemap/internal/base64vlq
+# github.com/gogo/protobuf v1.2.1
+github.com/gogo/protobuf/proto
+# github.com/golang/protobuf v1.3.1
+github.com/golang/protobuf/proto
+github.com/golang/protobuf/ptypes
+github.com/golang/protobuf/ptypes/any
+github.com/golang/protobuf/ptypes/duration
+github.com/golang/protobuf/ptypes/timestamp
+# github.com/gorilla/mux v1.7.4
+## explicit
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
 # github.com/konsorten/go-windows-terminal-sequences v1.0.1
 github.com/konsorten/go-windows-terminal-sequences
-# github.com/opencontainers/go-digest v1.0.0-rc1
+# github.com/moby/sys/mount v0.1.0
 ## explicit
+github.com/moby/sys/mount
+# github.com/moby/sys/mountinfo v0.1.0
+github.com/moby/sys/mountinfo
+# github.com/morikuni/aec v1.0.0
+## explicit
+github.com/morikuni/aec
+# github.com/opencontainers/go-digest v1.0.0-rc1
 github.com/opencontainers/go-digest
+# github.com/opencontainers/image-spec v1.0.1
+## explicit
+github.com/opencontainers/image-spec/specs-go
+github.com/opencontainers/image-spec/specs-go/v1
 # github.com/opencontainers/runc v0.1.1
 ## explicit
 github.com/opencontainers/runc/libcontainer/system
@@ -80,26 +108,36 @@ github.com/opencontainers/runc/libcontainer/user
 # github.com/pkg/errors v0.8.1
 ## explicit
 github.com/pkg/errors
+# github.com/sirupsen/logrus v1.4.1
+github.com/sirupsen/logrus
 # github.com/spf13/cobra v0.0.7
 ## explicit
 github.com/spf13/cobra
 # github.com/spf13/pflag v1.0.3
 github.com/spf13/pflag
 # golang.org/x/net v0.0.0-20190522155817-f3200d17e092
-golang.org/x/net/context
-golang.org/x/net/context/ctxhttp
 golang.org/x/net/internal/socks
 golang.org/x/net/proxy
-# golang.org/x/sys v0.0.0-20190507160741-ecd444e8653b
+# golang.org/x/sync v0.0.0-20190423024810-112230192c58
+golang.org/x/sync/errgroup
+# golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/text v0.3.0
+# golang.org/x/text v0.3.2
 golang.org/x/text/cases
 golang.org/x/text/collate
 golang.org/x/text/internal
 golang.org/x/text/internal/colltab
+golang.org/x/text/internal/language
+golang.org/x/text/internal/language/compact
 golang.org/x/text/internal/tag
 golang.org/x/text/language
 golang.org/x/text/transform
 golang.org/x/text/unicode/norm
-# github.com/Sirupsen/logrus => github.com/sirupsen/logrus v1.5.0
+# google.golang.org/genproto v0.0.0-20190425155659-357c62f0e4bb
+google.golang.org/genproto/googleapis/rpc/status
+# google.golang.org/grpc v1.21.0
+google.golang.org/grpc/codes
+google.golang.org/grpc/status
+# gotest.tools/v3 v3.0.2
+## explicit
