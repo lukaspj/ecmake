@@ -117,17 +117,6 @@ steps:
       event:
         - tag
 
-  - name: docker publish Go release
-    <<: *build_and_push_docker_go_1_14
-    settings:
-      tags:
-        - ${DRONE_SEMVER_MAJOR}-go1.14
-        - ${DRONE_SEMVER}-go1.14
-        - go1.14
-    when:
-      event:
-        - tag
-
   - name: docker publish Go release to GitHub
     <<: *build_and_push_docker_go_1_14
     <<: *github
