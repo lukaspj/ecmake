@@ -1,15 +1,22 @@
 package gojafile
 
 import (
+	"fmt"
 	"github.com/dop251/goja"
 	"github.com/lukaspj/ecmake/pkg/buildfile"
 	"github.com/pkg/errors"
+	"io/ioutil"
 )
+
+var _ buildfile.BuildFile = &GojaFile{}
 
 type GojaFile struct {
 	runtime *goja.Runtime
+	path    string
+
 	script  goja.Value
 	targets map[string]goja.Value
+	modules []*buildfile.ModuleHost
 }
 
 type GojaTarget struct {
@@ -20,7 +27,7 @@ func (g GojaTarget) GetName() string {
 	return g.name
 }
 
-func (g GojaFile) GetTargets() []buildfile.Target {
+func (g *GojaFile) GetTargets() []buildfile.Target {
 	var targets []buildfile.Target
 	for n, _ := range g.targets {
 		targets = append(targets, GojaTarget{name: n})
@@ -29,7 +36,7 @@ func (g GojaFile) GetTargets() []buildfile.Target {
 	return targets
 }
 
-func (g GojaFile) GetTarget(target string) buildfile.Target {
+func (g *GojaFile) GetTarget(target string) buildfile.Target {
 	targets := g.GetTargets()
 	for _, t := range targets {
 		if t.GetName() == target {
@@ -39,7 +46,7 @@ func (g GojaFile) GetTarget(target string) buildfile.Target {
 	return nil
 }
 
-func (g GojaFile) RunTarget(target buildfile.Target, args []string) (int, error) {
+func (g *GojaFile) RunTarget(target buildfile.Target, args []string) (int, error) {
 	var fn goja.Callable
 	var ok bool
 	for n, t := range g.targets {
@@ -66,22 +73,44 @@ func (g GojaFile) RunTarget(target buildfile.Target, args []string) (int, error)
 	return int(returnRaw.ToInteger()), nil
 }
 
-func NewGojaFile(vm *goja.Runtime, path, content string) (*GojaFile, error) {
+func (g *GojaFile) Close() error {
+	for _, m := range g.modules {
+		m.Close()
+	}
+	return nil
+}
+
+func (g *GojaFile) AddModuleHost(host *buildfile.ModuleHost) {
+	g.modules = append(g.modules, host)
+}
+
+func (g *GojaFile) Initialize() error {
+	content, err := ioutil.ReadFile(g.path)
+	if err != nil {
+		return errors.Wrap(err, fmt.Sprintf("failed to read file %s", g.path))
+	}
+
 	var targets map[string]goja.Value
 
 	setTargets := func(ts map[string]goja.Value) {
 		targets = ts
 	}
-	vm.Set("SetTargets", setTargets)
+	g.runtime.Set("SetTargets", setTargets)
 
-	script, err := vm.RunScript(path, content)
+	script, err := g.runtime.RunScript(g.path, string(content))
 	if err != nil {
-		return nil, errors.WithStack(err)
+		return errors.WithStack(err)
 	}
 
+	g.script = script
+	g.targets = targets
+
+	return nil
+}
+
+func NewGojaFile(vm *goja.Runtime, path string) *GojaFile {
 	return &GojaFile{
 		runtime: vm,
-		script:  script,
-		targets: targets,
-	}, nil
+		path:  path,
+	}
 }

@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/dop251/goja"
+	"github.com/hashicorp/go-hclog"
 	"github.com/lukaspj/ecmake/pkg/buildfile"
 	"github.com/lukaspj/ecmake/pkg/console"
 	"github.com/lukaspj/ecmake/pkg/docker"
@@ -20,6 +21,13 @@ func exitWithError(err error) {
 }
 
 func getBuildFile() buildfile.BuildFile {
+	logger := hclog.New(&hclog.LoggerOptions{
+		Name:            "ecmake",
+		Level:           hclog.Trace,
+		Output:          os.Stderr,
+		JSONFormat:      false,
+	})
+
 	vm := goja.New()
 	sh.New(true).Inject(vm)
 	console.NewConsole().Inject(vm)
@@ -32,6 +40,13 @@ func getBuildFile() buildfile.BuildFile {
 	}
 
 	file, err := gojafile.GetGojaFile(vm, wd)
+	if err != nil {
+		exitWithError(err)
+	}
+
+	gojafile.NewStdModule(logger).Inject(file)
+
+	err = file.Initialize()
 	if err != nil {
 		exitWithError(err)
 	}
@@ -72,6 +87,12 @@ func GetRootCmd(config Config) *cobra.Command {
 			if err != nil {
 				exitWithError(err)
 			}
+
+			err = file.Close()
+			if err != nil {
+				exitWithError(err)
+			}
+
 			os.Exit(errorCode)
 		},
 	}

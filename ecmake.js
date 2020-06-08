@@ -1,4 +1,7 @@
+var testModule = std.LoadPlugin('./plugin/module');
+
 function Test(args) {
+    testModule.test1();
     sh.RunV("go", "test", "-v", "./...", "-cover")
 }
 

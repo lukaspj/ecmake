@@ -22,6 +22,11 @@ func New() *Module {
 	return &Module{}
 }
 
+type DockerCliOptions struct {
+	Host    string
+	Version string
+}
+
 type DockerRegistryConfig struct {
 	Username string
 	Password string
