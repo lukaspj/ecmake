@@ -2,7 +2,6 @@ package gojafile
 
 import (
 	"fmt"
-	"github.com/dop251/goja"
 	"github.com/hashicorp/go-hclog"
 	"github.com/lukaspj/ecmake/pkg/buildfile"
 	"strings"
@@ -54,12 +53,8 @@ func (std *StdModule) LoadPlugin(path string) map[string]interface{} {
 	return obj
 }
 
-func getModuleCall(module buildfile.Module, method string) func(call goja.FunctionCall) interface{} {
-	return func(call goja.FunctionCall) interface{} {
-		var args []interface{}
-		for _, a := range call.Arguments {
-			args = append(args, a)
-		}
+func getModuleCall(module buildfile.Module, method string) func(args... interface{}) interface{} {
+	return func(args... interface{}) interface{} {
 		return module.Invoke(method, args)
 	}
 }

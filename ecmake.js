@@ -1,8 +1,7 @@
-var testModule = std.LoadPlugin('./plugin/module');
+var sh = std.LoadPlugin('../sh/sh');
 
 function Test(args) {
-    testModule.test1();
-    sh.RunV("go", "test", "-v", "./...", "-cover")
+    console.log(JSON.stringify(sh.RunV("go", "test", "-v", "./...", "-cover")))
 }
 
 SetTargets({

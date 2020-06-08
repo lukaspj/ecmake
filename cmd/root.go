@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"encoding/gob"
 	"fmt"
 	"github.com/dop251/goja"
 	"github.com/hashicorp/go-hclog"
@@ -9,7 +10,6 @@ import (
 	"github.com/lukaspj/ecmake/pkg/docker"
 	"github.com/lukaspj/ecmake/pkg/gojafile"
 	"github.com/lukaspj/ecmake/pkg/io"
-	"github.com/lukaspj/ecmake/pkg/sh"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"os"
@@ -29,10 +29,10 @@ func getBuildFile() buildfile.BuildFile {
 	})
 
 	vm := goja.New()
-	sh.New(true).Inject(vm)
 	console.NewConsole().Inject(vm)
 	docker.New().Inject(vm)
 	io.New().Inject(vm)
+	gob.Register(map[string]interface{}{})
 
 	wd, err := os.Getwd()
 	if err != nil {
