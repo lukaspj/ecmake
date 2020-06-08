@@ -19,6 +19,7 @@ require (
 	github.com/dop251/goja v0.0.0-20200326102500-6438c8ddc517
 	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
 	github.com/gorilla/mux v1.7.4 // indirect
+	github.com/hashicorp/go-plugin v1.3.0
 	github.com/morikuni/aec v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.0.1 // indirect
 	github.com/opencontainers/runc v0.1.1 // indirect
