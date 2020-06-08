@@ -88,6 +88,7 @@ github.com/golang/protobuf/ptypes/timestamp
 # github.com/gorilla/mux v1.7.4
 ## explicit
 # github.com/hashicorp/go-hclog v0.0.0-20180709165350-ff2cf002a8dd
+## explicit
 github.com/hashicorp/go-hclog
 # github.com/hashicorp/go-plugin v1.3.0
 ## explicit
@@ -137,7 +138,6 @@ golang.org/x/net/internal/timeseries
 golang.org/x/net/proxy
 golang.org/x/net/trace
 # golang.org/x/sync v0.0.0-20190423024810-112230192c58
-## explicit
 golang.org/x/sync/errgroup
 # golang.org/x/sys v0.0.0-20200223170610-d5e6a3e2c0ae => golang.org/x/sys v0.0.0-20190830141801-acfa387b8d69
 ## explicit
