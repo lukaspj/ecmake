@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
+	"github.com/dop251/goja"
 	"github.com/pkg/errors"
 	"os"
 
@@ -16,6 +17,7 @@ import (
 )
 
 type Module struct {
+	runtime *goja.Runtime
 }
 
 func New() *Module {

@@ -3,6 +3,7 @@ package sh
 import (
 	"bytes"
 	"fmt"
+	"github.com/dop251/goja"
 	"io"
 	"log"
 	"os"
@@ -12,6 +13,7 @@ import (
 
 type Module struct {
 	Verbose bool
+	runtime *goja.Runtime
 }
 
 func New(verbose bool) *Module {

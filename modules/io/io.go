@@ -2,11 +2,13 @@ package io
 
 import (
 	"fmt"
+	"github.com/dop251/goja"
 	"github.com/pkg/errors"
 	"os"
 )
 
 type Module struct {
+	runtime *goja.Runtime
 }
 
 func New() *Module {

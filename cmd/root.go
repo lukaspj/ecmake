@@ -3,12 +3,15 @@ package cmd
 import (
 	"fmt"
 	"github.com/dop251/goja"
+	"github.com/dop251/goja_nodejs/console"
+	"github.com/dop251/goja_nodejs/require"
+	"github.com/dop251/goja_nodejs/util"
+	"github.com/lukaspj/ecmake/modules/docker"
+	"github.com/lukaspj/ecmake/modules/http"
+	"github.com/lukaspj/ecmake/modules/io"
+	"github.com/lukaspj/ecmake/modules/sh"
 	"github.com/lukaspj/ecmake/pkg/buildfile"
-	"github.com/lukaspj/ecmake/pkg/console"
-	"github.com/lukaspj/ecmake/pkg/docker"
 	"github.com/lukaspj/ecmake/pkg/gojafile"
-	"github.com/lukaspj/ecmake/pkg/io"
-	"github.com/lukaspj/ecmake/pkg/sh"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"os"
@@ -21,10 +24,18 @@ func exitWithError(err error) {
 
 func getBuildFile() buildfile.BuildFile {
 	vm := goja.New()
-	sh.New(true).Inject(vm)
-	console.NewConsole().Inject(vm)
-	docker.New().Inject(vm)
-	io.New().Inject(vm)
+
+	registry := &require.Registry{}
+
+	registry.RegisterNativeModule("sh", sh.Require(true))
+	registry.RegisterNativeModule("docker", docker.Require)
+	registry.RegisterNativeModule("io", io.Require)
+	registry.RegisterNativeModule("console", console.Require)
+	registry.RegisterNativeModule("util", util.Require)
+	registry.RegisterNativeModule("http", http.Require)
+
+	_ = registry.Enable(vm)
+	console.Enable(vm)
 
 	wd, err := os.Getwd()
 	if err != nil {

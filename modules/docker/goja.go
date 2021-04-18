@@ -4,14 +4,14 @@ import (
 	"github.com/dop251/goja"
 )
 
-func (d *Module) Inject(vm *goja.Runtime) {
-	dockerObj := map[string]interface{} {
-		"Build": d.Build,
-		"Push": d.Push,
-		"Network": map[string]interface{} {
-			"Create": d.NetworkCreate,
-		},
+func Require(runtime *goja.Runtime, module *goja.Object) {
+	docker := &Module{
+		runtime: runtime,
 	}
-	vm.Set("docker", dockerObj)
+
+	obj := module.Get("exports").(*goja.Object)
+	obj.Set("Build", docker.Build)
+	obj.Set("Push", docker.Push)
+	obj.Set("NetworkCreate", docker.NetworkCreate)
 }
 

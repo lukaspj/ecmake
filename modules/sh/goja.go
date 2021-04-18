@@ -4,20 +4,24 @@ import (
 	"github.com/dop251/goja"
 )
 
-func (sh *Module) Inject(vm *goja.Runtime) {
-	shObj := map[string]interface{} {
-		"RunCmd": sh.RunCmd,
-		"OutCmd": sh.OutCmd,
-		"Run": sh.Run,
-		"RunV": sh.RunV,
-		"RunWith": sh.RunWith,
-		"RunWithV": sh.RunWithV,
-		"Output": sh.Output,
-		"OutputWith": sh.OutputWith,
-		"Exec": sh.Exec,
-		"CmdRan": sh.CmdRan,
-		"ExitStatus": sh.ExitStatus,
-	}
-	vm.Set("sh", shObj)
-}
+func Require(verbose bool) func(runtime *goja.Runtime, module *goja.Object) {
+	return func(runtime *goja.Runtime, module *goja.Object) {
+		sh := &Module{
+			Verbose: verbose,
+			runtime: runtime,
+		}
 
+		obj := module.Get("exports").(*goja.Object)
+		obj.Set("RunCmd", sh.RunCmd)
+		obj.Set("OutCmd", sh.OutCmd)
+		obj.Set("Run", sh.Run)
+		obj.Set("RunV", sh.RunV)
+		obj.Set("RunWith", sh.RunWith)
+		obj.Set("RunWithV", sh.RunWithV)
+		obj.Set("Output", sh.Output)
+		obj.Set("OutputWith", sh.OutputWith)
+		obj.Set("Exec", sh.Exec)
+		obj.Set("CmdRan", sh.CmdRan)
+		obj.Set("ExitStatus", sh.ExitStatus)
+	}
+}

@@ -4,11 +4,12 @@ import (
 	"github.com/dop251/goja"
 )
 
-func (io *Module) Inject(vm *goja.Runtime) {
-	ioObj := map[string]interface{} {
-		"DeleteFile": io.DeleteFile,
-		"DeleteFolder": io.DeleteFolder,
+func Require(runtime *goja.Runtime, module *goja.Object) {
+	ioObj := &Module{
+		runtime: runtime,
 	}
-	vm.Set("io", ioObj)
-}
 
+	obj := module.Get("exports").(*goja.Object)
+	obj.Set("DeleteFile", ioObj.DeleteFile)
+	obj.Set("DeleteFolder", ioObj.DeleteFolder)
+}
