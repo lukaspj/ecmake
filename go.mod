@@ -12,12 +12,11 @@ require (
 	github.com/Microsoft/hcsshim v0.8.7 // indirect
 	github.com/containerd/containerd v1.3.3 // indirect
 	github.com/containerd/continuity v0.0.0-20200228182428-0f16d7a0959c // indirect
-	github.com/dlclark/regexp2 v1.2.0 // indirect
 	github.com/docker/distribution v2.7.1+incompatible // indirect
 	github.com/docker/docker v17.12.0-ce-rc1.0.20200309214505-aa6a9891b09c+incompatible
 	github.com/docker/go-connections v0.4.0 // indirect
-	github.com/dop251/goja v0.0.0-20200326102500-6438c8ddc517
-	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
+	github.com/dop251/goja v0.0.0-20210406175830-1b11a6af686d
+	github.com/dop251/goja_nodejs v0.0.0-20210225215109-d91c329300e7
 	github.com/gorilla/mux v1.7.4 // indirect
 	github.com/morikuni/aec v1.0.0 // indirect
 	github.com/opencontainers/image-spec v1.0.1 // indirect
