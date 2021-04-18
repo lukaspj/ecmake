@@ -17,8 +17,7 @@ github.com/containerd/continuity/fs
 github.com/containerd/continuity/pathdriver
 github.com/containerd/continuity/syscallx
 github.com/containerd/continuity/sysx
-# github.com/dlclark/regexp2 v1.2.0
-## explicit
+# github.com/dlclark/regexp2 v1.4.1-0.20201116162257-a2a8dda75c91
 github.com/dlclark/regexp2
 github.com/dlclark/regexp2/syntax
 # github.com/docker/distribution v2.7.1+incompatible
@@ -64,15 +63,22 @@ github.com/docker/go-connections/sockets
 github.com/docker/go-connections/tlsconfig
 # github.com/docker/go-units v0.4.0
 github.com/docker/go-units
-# github.com/dop251/goja v0.0.0-20200326102500-6438c8ddc517
+# github.com/dop251/goja v0.0.0-20210406175830-1b11a6af686d
 ## explicit
 github.com/dop251/goja
 github.com/dop251/goja/ast
 github.com/dop251/goja/file
+github.com/dop251/goja/ftoa
+github.com/dop251/goja/ftoa/internal/fast
 github.com/dop251/goja/parser
 github.com/dop251/goja/token
-# github.com/go-sourcemap/sourcemap v2.1.3+incompatible
+github.com/dop251/goja/unistring
+# github.com/dop251/goja_nodejs v0.0.0-20210225215109-d91c329300e7
 ## explicit
+github.com/dop251/goja_nodejs/console
+github.com/dop251/goja_nodejs/require
+github.com/dop251/goja_nodejs/util
+# github.com/go-sourcemap/sourcemap v2.1.3+incompatible
 github.com/go-sourcemap/sourcemap
 github.com/go-sourcemap/sourcemap/internal/base64vlq
 # github.com/gogo/protobuf v1.2.1
@@ -122,7 +128,7 @@ golang.org/x/sync/errgroup
 ## explicit
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/text v0.3.2
+# golang.org/x/text v0.3.6
 golang.org/x/text/cases
 golang.org/x/text/collate
 golang.org/x/text/internal
