@@ -24,14 +24,15 @@ builds:
 dockers:
   - dockerfile: docker/scratch.Dockerfile
     image_templates:
-      - docker.pkg.github.com/lukaspj/ecmake/scratch:latest
-      - docker.pkg.github.com/lukaspj/ecmake/scratch:v{{ .Major }}
-      - docker.pkg.github.com/lukaspj/ecmake/scratch:{{ .Tag }}
-      - docker.pkg.github.com/lukaspj/ecmake/scratch:scratch-{{ .Tag }}
+      - ghcr.io/lukaspj/ecmake:latest
+      - ghcr.io/lukaspj/ecmake:v{{ .Major }}
+      - ghcr.io/lukaspj/ecmake:{{ .Tag }}
+      - ghcr.io/lukaspj/ecmake:v{{ .Major }}-scratch
+      - ghcr.io/lukaspj/ecmake:{{ .Tag }}-scratch
   - dockerfile: docker/go.Dockerfile
     image_templates:
-      - docker.pkg.github.com/lukaspj/ecmake/go_1_16:latest
-      - docker.pkg.github.com/lukaspj/ecmake/go_1_16:{{ .Tag }}
+      - ghcr.io/lukaspj/ecmake:{{ .Tag }}-go1.16
+      - ghcr.io/lukaspj/ecmake:v{{ .Major }}-go1.16
     build_flag_templates:
       - "--build-arg=BASE_TAG=1.16"
 archives:
