@@ -24,8 +24,16 @@ builds:
 dockers:
   - dockerfile: docker/scratch.Dockerfile
     image_templates:
-      - ecmake/scratch:latest
-      - ecmake/scratch:{{ .Tag }}
+      - docker.pkg.github.com/lukaspj/ecmake/scratch:latest
+      - docker.pkg.github.com/lukaspj/ecmake/scratch:v{{ .Major }}
+      - docker.pkg.github.com/lukaspj/ecmake/scratch:{{ .Tag }}
+      - docker.pkg.github.com/lukaspj/ecmake/scratch:scratch-{{ .Tag }}
+  - dockerfile: docker/go.Dockerfile
+    image_templates:
+      - docker.pkg.github.com/lukaspj/ecmake/go_1_16:latest
+      - docker.pkg.github.com/lukaspj/ecmake/go_1_16:{{ .Tag }}
+    build_flag_templates:
+      - "--build-arg=BASE_TAG=1.16"
 archives:
   - replacements:
       darwin: Darwin
