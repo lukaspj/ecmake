@@ -1,11 +1,3 @@
-FROM golang:1.14 AS build
-
-COPY . /src
-WORKDIR /src
-
-RUN CGO_ENABLED=0 go build
-
-FROM scratch as final
-COPY --from=build /src/ecmake /ecmake
-
+FROM scratch
+COPY ecmake /ecmake
 ENTRYPOINT ["/ecmake"]
