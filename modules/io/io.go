@@ -5,6 +5,7 @@ import (
 	"github.com/dop251/goja"
 	"github.com/pkg/errors"
 	"os"
+	"path/filepath"
 )
 
 type Module struct {
@@ -39,4 +40,8 @@ func (io *Module) DeleteFolder(path string, force bool) error {
 	} else  {
 		return os.Remove(path)
 	}
+}
+
+func (io *Module) Walk(path string, fn filepath.WalkFunc) error {
+	return filepath.Walk(path, fn)
 }

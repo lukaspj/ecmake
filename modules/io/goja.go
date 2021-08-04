@@ -12,4 +12,5 @@ func Require(runtime *goja.Runtime, module *goja.Object) {
 	obj := module.Get("exports").(*goja.Object)
 	obj.Set("DeleteFile", ioObj.DeleteFile)
 	obj.Set("DeleteFolder", ioObj.DeleteFolder)
+	obj.Set("Walk", ioObj.Walk)
 }
