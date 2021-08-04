@@ -10,6 +10,7 @@ import (
 	"github.com/lukaspj/ecmake/modules/http"
 	"github.com/lukaspj/ecmake/modules/io"
 	"github.com/lukaspj/ecmake/modules/sh"
+	"github.com/lukaspj/ecmake/modules/zip"
 	"github.com/lukaspj/ecmake/pkg/buildfile"
 	"github.com/lukaspj/ecmake/pkg/gojafile"
 	"github.com/pkg/errors"
@@ -28,6 +29,7 @@ func getBuildFile() buildfile.BuildFile {
 	registry := &require.Registry{}
 
 	registry.RegisterNativeModule("sh", sh.Require(true))
+	registry.RegisterNativeModule("zip", zip.Require())
 	registry.RegisterNativeModule("docker", docker.Require)
 	registry.RegisterNativeModule("io", io.Require)
 	registry.RegisterNativeModule("console", console.Require)
