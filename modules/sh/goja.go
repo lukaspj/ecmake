@@ -2,6 +2,7 @@ package sh
 
 import (
 	"github.com/dop251/goja"
+	"github.com/google/shlex"
 )
 
 func Require(verbose bool) func(runtime *goja.Runtime, module *goja.Object) {
@@ -12,6 +13,7 @@ func Require(verbose bool) func(runtime *goja.Runtime, module *goja.Object) {
 		}
 
 		obj := module.Get("exports").(*goja.Object)
+		obj.Set("SplitCmd", shlex.Split)
 		obj.Set("RunCmd", sh.RunCmd)
 		obj.Set("OutCmd", sh.OutCmd)
 		obj.Set("Run", sh.Run)
