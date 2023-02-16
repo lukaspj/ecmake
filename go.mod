@@ -3,8 +3,7 @@ module github.com/lukaspj/ecmake
 go 1.16
 
 require (
-	github.com/Microsoft/hcsshim v0.8.20 // indirect
-	github.com/containerd/containerd v1.5.5 // indirect
+	github.com/containerd/containerd v1.5.18 // indirect
 	github.com/docker/docker v20.10.8+incompatible
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/dop251/goja v0.0.0-20210804101310-32956a348b49
